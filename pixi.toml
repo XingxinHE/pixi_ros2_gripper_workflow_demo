@@ -1,0 +1,23 @@
+[workspace]
+authors = ["Xingxin HE <xingxin.he@connect.ust.hk>"]
+channels = ["robostack-humble", "conda-forge"]
+description = "ROS 2 workflow demo showing Pixi + RoboStack for gripper command and RViz visualization."
+license = "MIT"
+name = "pixi_ros2_gripper_workflow_demo"
+platforms = ["osx-arm64"]
+version = "0.1.0"
+
+[activation]
+scripts = ["scripts/ros_env.bash", "install/setup.bash"]
+
+[tasks]
+build = { cmd = "colcon build --symlink-install", inputs = ["src"] }
+gripper = { cmd = "ros2 run pixi_ros2_gripper_workflow_demo ui_node", depends-on = ["build"] }
+visualize = { cmd = "ros2 launch pixi_ros2_gripper_workflow_demo visualize.launch.py", depends-on = ["build"] }
+[dependencies]
+ros-humble-desktop = ">=0.10.0,<0.11"
+rich = ">=14.3.3,<15"
+colcon-common-extensions = ">=0.3.0,<0.4"
+setuptools = "<=58.2.0"
+ros-humble-rviz2 = ">=11.2.18,<12"
+ros-humble-robot-state-publisher = ">=3.0.3,<4"

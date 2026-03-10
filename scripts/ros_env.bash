@@ -1,0 +1,3 @@
+export ROS_DOMAIN_ID=13
+export ROS_LOCALHOST_ONLY=1
+export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp 
